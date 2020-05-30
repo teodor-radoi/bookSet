@@ -1,0 +1,127 @@
+<mvc:View
+        controllerName="org.ubb.books.controller.Books"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m">
+
+    <Table id="idBooksTable"
+           items="{
+			path: '/Books',
+			sorter: {
+			    path: 'title'
+			}
+		}"
+           growing="true"
+           growingThreshold="10"
+           mode="SingleSelectLeft">
+
+        <headerToolbar>
+            <Toolbar>
+                <content>
+                    <Button
+                            text="Delete"
+                            press="delete"/>
+                </content>
+            </Toolbar>
+        </headerToolbar>
+
+        <columns>
+            <Column>
+                <Text text="Title"/>
+            </Column>
+            <Column>
+                <Text text="Author"/>
+            </Column>
+            <Column>
+                <Text text="Published on"/>
+            </Column>
+            <Column>
+                <Text text="Language"/>
+            </Column>
+            <Column>
+                <Text text="Available books"/>
+            </Column>
+            <Column>
+                <Text text="Total"/>
+            </Column>
+            <Column>
+                <Text text="Created by"/>
+            </Column>
+            <Column>
+                <Text text="Changed by"/>
+            </Column>
+            <Column>
+                <Text text="Changed on"/>
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <ObjectIdentifier
+                            title="{title}"
+                            text="{isbn}"/>
+                    <Text text="{author}"/>
+                    <Text text="{
+							path: 'publishDate',
+							type: 'sap.ui.model.type.Date'
+               			}"
+                    />
+                    <Text text="{language}"/>
+                    <Text text="{= parseInt(${available}) }"/>
+                    <Text text="{= parseInt(${total})}"/>
+                    <Text text="{createdBy}"/>
+                    <Text text="{changedBy}"/>
+                    <Text text="{
+							path: 'changedOn',
+							type : 'sap.ui.model.type.Date'
+							}"
+                    />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+    <Input
+            id="isbn"
+            description="Isbn"
+            valueLiveUpdate="true"
+            width="50%"/>
+    <Input
+            id="author"
+            description="Author"
+            valueLiveUpdate="true"
+            width="50%"/>
+    <Input
+            id="title"
+            description="Title"
+            valueLiveUpdate="true"
+            width="50%"/>
+    <Input
+            id="publishDate"
+            description="Publish date"
+            valueLiveUpdate="true"
+            width="50%"/>
+    <Input
+            id="language"
+            description="Language"
+            valueLiveUpdate="true"
+            width="50%"/>
+    <Input
+            id="available"
+            description="Available"
+            valueLiveUpdate="true"
+            type="Number"
+            width="50%"/>
+    <Input
+            id="total"
+            description="Total"
+            valueLiveUpdate="true"
+            type="Number"
+            width="50%"/>
+
+    <Button
+            text="Create"
+            press="create"/>
+    <Button
+            text="Update"
+            press="update"/>
+
+</mvc:View>
